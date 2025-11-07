@@ -3,7 +3,7 @@ from fetch_nasa import get_nasa_news
 from ai_summarizer import summarize_data
 from db_save import save_to_db
 
-app = Flask(name)
+app = Flask(__name__)
 
 @app.route('/')
 def home():
@@ -12,5 +12,5 @@ def home():
     save_to_db(summary)
     return render_template('index.html', news=summary)
 
-if name == "main":
+if __name__ == "main":
     app.run(host='0.0.0.0', port=5000)
