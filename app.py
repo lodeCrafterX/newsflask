@@ -12,5 +12,5 @@ def home():
     save_to_db(summary)
     return render_template('index.html', news=summary)
 
-if __name__ == "main":
+if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000)
