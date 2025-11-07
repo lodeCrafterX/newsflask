@@ -7,9 +7,14 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    data = get_nasa_news()
+    data = get_nasa_news()  # fetch NASA APOD
+    if not data:
+        return "🚨 Unable to fetch NASA news right now.", 500
+
     summary = summarize_data(data)
-    save_to_db(summary)
+    if summary:
+        save_to_db(summary)
+
     return render_template('index.html', news=summary)
 
 if __name__ == "__main__":
